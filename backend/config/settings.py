@@ -8,8 +8,8 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 # .vercel.app is always allowed (Vercel's default domain). Add any custom
 # domain via the ALLOWED_HOSTS env var (comma-separated) in Vercel project settings.
 _allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '')
@@ -73,10 +73,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database configuration: production vs development fallback
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        conn_health_checks=True,
+    "default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL"),
+        conn_max_age=0,
     )
 }
 
