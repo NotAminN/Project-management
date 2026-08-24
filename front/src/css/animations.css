@@ -1,0 +1,79 @@
+/* ============================================================
+   NORTHWIND — ANIMATIONS
+   Reusable motion utilities. Driven by GSAP where appropriate,
+   with CSS fallbacks for initial states.
+   ============================================================ */
+
+/* Initial states for GSAP reveal (only applied when JS active) */
+.js .reveal { opacity: 0; }
+.js .reveal-up { opacity: 0; transform: translateY(26px); }
+.js .reveal-down { opacity: 0; transform: translateY(-26px); }
+.js .reveal-left { opacity: 0; transform: translateX(-30px); }
+.js .reveal-right { opacity: 0; transform: translateX(30px); }
+.js .reveal-scale { opacity: 0; transform: scale(0.96); }
+
+/* Entrance stagger helper (CSS, used when reduced motion) */
+@keyframes nw-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nw-spin {
+  to { transform: rotate(360deg); }
+}
+
+.spin { animation: nw-spin 0.8s linear infinite; }
+
+/* Hover lift for editorial cards */
+.lift { transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo); }
+.lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+/* Shimmer for skeletons */
+.skeleton {
+  background: linear-gradient(90deg, var(--color-beige) 25%, var(--color-mist) 50%, var(--color-beige) 75%);
+  background-size: 200% 100%;
+  animation: nw-shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes nw-shimmer {
+  to { background-position: -200% 0; }
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* Soft pulse for live indicators */
+@keyframes nw-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse { animation: nw-pulse 2s ease-in-out infinite; }
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .js .reveal, .js .reveal-up, .js .reveal-down,
+  .js .reveal-left, .js .reveal-right, .js .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

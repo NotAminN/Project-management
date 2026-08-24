@@ -1,0 +1,63 @@
+/* ============================================================
+   NORTHWIND — RESPONSIVE HELPERS
+   Breakpoints: 375 / 390 / 430 / 768 / 1024 / 1280 / 1440 / 1920
+   ============================================================ */
+
+/* Hide-on-mobile utility (used with classes set per breakpoint) */
+@media (max-width: 767px) {
+  .hide-mobile { display: none !important; }
+}
+@media (min-width: 768px) {
+  .hide-desktop { display: none !important; }
+}
+
+@media (max-width: 1023px) {
+  .hide-tablet { display: none !important; }
+}
+
+/* Fluid type for hero display */
+.display-fluid {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.04;
+}
+
+.lead-fluid {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+}
+
+/* Prevent horizontal overflow globally */
+.no-scroll { overflow: hidden; }
+
+/* Modal scroll lock */
+body.modal-open { overflow: hidden; }
+
+/* Mobile drawer */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: none;
+}
+.drawer.open { display: block; }
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(37, 34, 31, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-soft);
+}
+.drawer.open .drawer-scrim { opacity: 1; }
+.drawer-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 84vw;
+  max-width: 340px;
+  background: var(--color-softwhite);
+  transform: translateX(-100%);
+  transition: transform 0.32s var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
+}
+.drawer.open .drawer-panel { transform: translateX(0); }
