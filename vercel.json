@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "Hy3 Front/backend/config/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "Hy3 Front/backend/config/wsgi.py"
+    }
+  ]
+}
