@@ -9,7 +9,7 @@
 // feature is not implemented. No fake endpoints, fake operational status,
 // fake job listings, or fake sent messages are presented as real.
 
-const API_ROOT = 'http://localhost:8001/api'
+const API_ROOT = import.meta.env.VITE_API_URL || 'http://localhost:8001/api'
 
 export const pageContent = {
   // ---------------- Product ----------------

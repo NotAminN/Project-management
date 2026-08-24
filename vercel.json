@@ -1,14 +1,9 @@
 {
-  "builds": [
-    {
-      "src": "Hy3 Front/backend/config/wsgi.py",
-      "use": "@vercel/python"
+  "buildCommand": "(python backend/manage.py migrate --noinput && python backend/manage.py collectstatic --noinput) || (python3 backend/manage.py migrate --noinput && python3 backend/manage.py collectstatic --noinput); cd front && npm install && npm run build",
+  "outputDirectory": "front/dist",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": ["backend/**"]
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "Hy3 Front/backend/config/wsgi.py"
-    }
-  ]
+  }
 }

@@ -10,10 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ["localhost",
-    "127.0.0.1",
-    ".vercel.app",
-]
+# .vercel.app is always allowed (Vercel's default domain). Add any custom
+# domain via the ALLOWED_HOSTS env var (comma-separated) in Vercel project settings.
+_allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '')
+_extra_hosts = [h.strip() for h in _allowed_hosts_env.split(',') if h.strip()]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app'] + _extra_hosts
 
 INSTALLED_APPS = [
     'django.contrib.admin',

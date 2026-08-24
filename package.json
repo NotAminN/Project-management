@@ -1,0 +1,9 @@
+{
+  "name": "northwind-combined",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd front && npm install && npm run build",
+    "dev": "cd front && npm run dev"
+  }
+}
