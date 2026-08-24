@@ -1,5 +1,5 @@
 {
-  "buildCommand": "(python backend/manage.py migrate --noinput && python backend/manage.py collectstatic --noinput) || (python3 backend/manage.py migrate --noinput && python3 backend/manage.py collectstatic --noinput); cd front && npm install && npm run build",
+  "buildCommand": "cd front && npm ci && npm run build",
   "outputDirectory": "front/dist",
   "functions": {
     "api/index.py": {

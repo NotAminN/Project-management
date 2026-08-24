@@ -1,7 +1,10 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "backend"))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BACKEND_DIR = os.path.join(BASE_DIR, "backend")
+
+sys.path.insert(0, BACKEND_DIR)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
