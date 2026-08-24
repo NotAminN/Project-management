@@ -1,19 +1,16 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponseRedirect
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
 
-def redirect_to_frontend(request):
-    return HttpResponseRedirect('http://localhost:5173/')
-
 urlpatterns = [
-    path('', redirect_to_frontend),
     path('admin/', admin.site.urls),
+
     path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     path('api/users/', include('apps.users.urls')),
     path('api/projects/', include('apps.projects.urls')),
     path('api/tasks/', include('apps.tasks.urls')),

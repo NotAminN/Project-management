@@ -1,7 +1,7 @@
 // In production (Vercel) the API is served from the same domain at /api.
 // Set VITE_API_URL in the frontend project's Environment Variables to override
 // (e.g. https://your-domain.vercel.app/api). Falls back to localhost for dev.
-export const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001/api';
+export const BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export function getTokens() {
     return {
